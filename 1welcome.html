@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COMIKAGI</title>
+
+    <!-- IMPORTANT FOR MOBILE RESPONSIVENESS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: slideshow 12s infinite;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 13px;
+            padding: 6px 10px;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(0, 195, 255, 0.2);
+            border-radius: 4px;
+            color: #00c3ff;
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background: #00c3ff;
+            transition: 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 20px 20px 20px;
+            text-align: center;
+        }
+
+        .overlay h1 {
+            font-size: 32px;
+        }
+
+        /* ===== IMAGE CAROUSEL ===== */
+        .image-carousel {
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+            padding: 10px 0;
+        }
+
+        .image-track {
+            display: flex;
+            gap: 15px;
+            animation: scroll 30s linear infinite;
+        }
+
+        .image-track img {
+            height: 80px;
+            border-radius: 5px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 15px 5%;
+            font-size: 12px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #00c3ff;
+        }
+
+        footer a {
+            color: #00c3ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-grid, .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 10px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        /* Tablets */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 10px;
+            }
+
+            .overlay h1 {
+                font-size: 26px;
+            }
+
+            .image-track img {
+                height: 70px;
+            }
+        }
+
+        /* Phones */
+        @media (max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 8px;
+                width: 100%;
+            }
+
+            .overlay h1 {
+                font-size: 22px;
+            }
+
+            .contact-grid, .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-track img {
+                height: 60px;
+            }
+        }
+
+        /* ===== BACKGROUND SLIDESHOW ===== */
+        @keyframes slideshow {
+            0% { background-image: url("image1.png"); }
+            33% { background-image: url("image2.png"); }
+            66% { background-image: url("image3.png"); }
+            100% { background-image: url("image1.png"); }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">COOPERATIVE MINIERE KABABARA ET GIKINGO</div>
+
+    <nav>
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="services.html">SERVICES</a></li>
+            <li><a href="our_work.html">OUR WORK</a></li>
+            <li><a href="publication.html">PUBLICATION</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="overlay">
+    <h1>WELCOME TO COMIKAGI</h1>
+</div>
+
+<div class="image-carousel">
+    <div class="image-track">
+        <img src="image4.jpeg">
+        <img src="image5.jpeg">
+        <img src="image6.jpeg">
+        <img src="image7.jpeg">
+        <img src="image8.jpeg">
+        <img src="image9.jpeg">
+        <img src="image10.jpeg">
+        <img src="image11.jpeg">
+        <img src="image12.jpeg">
+        <img src="image13.jpeg">
+
+        <!-- Duplicate -->
+        <img src="image4.jpeg">
+        <img src="image5.jpeg">
+        <img src="image6.jpeg">
+        <img src="image7.jpeg">
+        <img src="image8.jpeg">
+        <img src="image9.jpeg">
+        <img src="image10.jpeg">
+        <img src="image11.jpeg">
+        <img src="image12.jpeg">
+        <img src="image13.jpeg">
+    </div>
+</div>
+
+<footer>
+    <div class="footer-container">
+
+        <div class="footer-section">
+            <h3>CONTACTS</h3>
+            <div class="contact-grid">
+                <p><strong>TIN:</strong></p>
+                <p>101773235</p>
+                <p><strong>TEL:</strong></p>
+                <p>+250783419757</p>
+                <p><strong>EMAIL:</strong></p>
+                <p>
+                    <a href="https://mail.google.com/mail/?view=cm&to=comikagi2030@gmail.com" target="_blank">
+                        comikagi2030@gmail.com
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>LOCATION</h3>
+            <div class="location-grid">
+                <p>NORTH PROVINCE</p>
+                <p>GAKENKE DISTRICT</p>
+                <p>RULI SECTOR</p>
+                <p>GIKINGO CELL</p>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
