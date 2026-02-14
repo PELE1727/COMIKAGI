@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>COMIKAGI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         * {
             margin: 0;
@@ -11,13 +13,39 @@
 
         body {
             min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            animation: slideshow 18s infinite;
+            font-family: 'Segoe UI', Arial, sans-serif;
             display: flex;
             flex-direction: column;
+        }
+
+        /* ===============================
+           DESKTOP BACKGROUND (SLIDESHOW)
+        =============================== */
+        @media (min-width: 769px) {
+            body {
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                animation: slideshow 18s infinite ease-in-out;
+            }
+
+            @keyframes slideshow {
+                0%   { background-image: url("image1.png"); }
+                33%  { background-image: url("image2.png"); }
+                66%  { background-image: url("image3.png"); }
+                100% { background-image: url("image1.png"); }
+            }
+        }
+
+        /* ===============================
+           MOBILE BACKGROUND (DARK)
+        =============================== */
+        @media (max-width: 768px) {
+            body {
+                background: #0d0d0d;
+                animation: none;
+            }
         }
 
         /* ===== HEADER ===== */
@@ -25,148 +53,109 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.95);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 18px 40px;
             z-index: 1000;
         }
 
         .logo a {
             color: white;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             text-decoration: none;
-            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .logo a:hover {
-            color: #00c3ff;
-        }
-
-        nav {
-            position: relative;
-        }
-
+        /* ===== NAVIGATION ===== */
         nav ul {
             list-style: none;
             display: flex;
             gap: 20px;
         }
 
-        nav ul li {
-            position: relative;
-        }
-
         nav ul li a {
             text-decoration: none;
             color: white;
-            font-size: 15px;
-            padding: 8px 12px;
-            display: block;
-            transition: 0.3s;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: 0.3s ease;
+            text-transform: uppercase;
         }
 
         nav ul li a:hover {
-            color: #00c3ff;
-            background-color: rgba(0,195,255,0.1);
-            border-radius: 4px;
-        }
-
-        nav ul li ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(0, 0, 0, 0.9);
-            list-style: none;
-            min-width: 220px;
-            border-radius: 5px;
-            overflow: hidden;
-            z-index: 1001;
-        }
-
-        nav ul li ul li a {
-            padding: 8px 15px;
-            font-size: 14px;
-            color: white;
-            white-space: nowrap;
-        }
-
-        nav ul li ul li a:hover {
-            background-color: #00c3ff;
+            background: #00c3ff;
             color: black;
         }
 
-        nav ul li:hover > ul {
-            display: block;
+        /* ===== HAMBURGER ===== */
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
         }
 
-        /* ===== OVERLAY CONTENT ===== */
+        /* ===== OVERLAY ===== */
         .overlay {
             flex: 1;
-            background: rgba(255, 255, 255, 0.3);
-            color: black;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding-top: 120px;
-            padding-left: 50px;
-            padding-right: 50px;
-            text-align: left;
-            backdrop-filter: blur(5px);
-            border-radius: 10px;
-            max-width: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 140px 60px 40px 60px;
+        }
+
+        .overlay h1,
+        .overlay h2 {
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
         .overlay h1 {
-            font-size: 50px;
-            margin-bottom: 25px;
-            font-weight: bold;
-            color: black;
+            font-size: 42px;
+            margin-bottom: 30px;
         }
 
         .overlay h2 {
-            font-size: 28px;
-            margin-top: 20px;
+            font-size: 24px;
+            margin-top: 25px;
             margin-bottom: 10px;
-            font-weight: bold;
-            color: black;
         }
 
         .overlay p {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 16px;
             line-height: 1.6;
-            color: black;
+            margin-bottom: 15px;
         }
 
         /* ===== FOOTER ===== */
         footer {
-            background: rgba(0, 0, 0, 0.95);
+            background: #000;
             color: white;
-            padding: 10px 6%;
-            font-size: 12px;
-        }
-
-        .footer-container {
+            padding: 20px 6%;
+            font-size: 13px;
             display: flex;
-            justify-content: space-between;
             flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
         }
 
         .footer-section {
-            width: 45%;
+            flex: 1;
             min-width: 200px;
         }
 
         .footer-section h3 {
-            margin-bottom: 4px;
-            font-size: 13px;
             color: #00c3ff;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        footer p {
+            margin-bottom: 6px;
         }
 
         footer a {
@@ -187,12 +176,66 @@
             font-size: 12px;
         }
 
-        /* ===== BACKGROUND SLIDESHOW TIMED ===== */
-        @keyframes slideshow {
-            0% { background-image: url("image1.png"); }
-            44.44% { background-image: url("image1.png"); }
-            72.22% { background-image: url("image2.png"); }
-            100% { background-image: url("image3.png"); }
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+
+            header {
+                padding: 15px 20px;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }
+
+            nav.active {
+                max-height: 400px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+
+            nav ul li {
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 15px;
+                display: block;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .overlay {
+                padding: 120px 20px 30px 20px;
+            }
+
+            .overlay h1 {
+                font-size: 28px;
+            }
+
+            .overlay h2 {
+                font-size: 20px;
+            }
+
+            .overlay p {
+                font-size: 15px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
 
     </style>
@@ -200,84 +243,83 @@
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <a href="1welcome.html">COMIKAGI</a>
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">HOME</a>
-                    <ul>
-                        <!-- optional sublinks -->
-                    </ul>
-                </li>
-                <li>
-                    <a href="about.html">ABOUT</a>
-                    <ul></ul>
-                </li>
-                <li>
-                    <a href="services.html">SERVICES</a>
-                    <ul></ul>
-                </li>
-                <li>
-                    <a href="our_work.html">OUR WORK</a>
-                    <ul></ul>
-                </li>
-                <li>
-                    <a href="publication.html">PUBLICATION</a>
-                    <ul></ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main Content Overlay -->
-    <div class="overlay">
-        <h1>ABOUT COMIKAGI</h1>
-
-        <h2>Minerals mined in COMIKAGI</h2>
-        <p>Key mined and still mining minerals in COMIKAGI are Cassiterite and coltan.</p>
-
-        <h2>History of mining in COMIKAGI</h2>
-        <p>Cooperative COMIKAGI is a mining cooperative with its headquarters in the Gakenke district, Ruli sector, Gikingo cell. It has been involved in mining for almost 35 years since 1989. Kababara perimeter is one of the six (6) mining licenses that COMIKAGI owns and is one where mining started. The president of Cooperative COMIKAGI is Kayitesi Beatrice (0783419757/comikagi2030@gmail.com). Mining activities have been conducted through underground operations.</p>
-
-        <h2>Production status</h2>
-        <p>COMIKAGI production is good ranging between 10,000kg to 20,000kg. The cassiterite is more dominant than coltan in pegmatite ore.</p>
-
-        <h2>Adding value to mined minerals</h2>
-        <p>Currently COMIKAGI uses Magnetic separator machines which use strong permanent magnets or electromagnets to remove ferrous contaminants from concentrate ores from the field based on magnetic properties. They are crucial for industries like mining because utilizing magnetic drums, rolls, or belts to separate materials, with capacities ranging from fine particles to large debris.</p>
-
-        <h2>Future projection</h2>
-        <p>Future project of COMIKAGI is Smelting process which will be used to extract pure metals from their mineral ores. Unlike simple melting, which only changes a substance's state from solid to liquid, smelting uses intense heat and chemical reducing agents to break the bonds between the metal and other elements like oxygen or sulfur.</p>
+<header>
+    <div class="logo">
+        <a href="index.html">COMIKAGI</a>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>CONTACTS</h3>
-                <div class="contact-grid">
-                    <p><strong>TIN:</strong></p>
-                    <p>101773235</p>
-                    <p><strong>TEL:</strong></p>
-                    <p>+250783419757</p>
-                    <p><strong>EMAIL:</strong></p>
-                    <p><a href="mailto:comikagi2030@gmail.com">comikagi2030@gmail.com</a></p>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>LOCATION</h3>
-                <div class="location-grid">
-                    <p>NORTH PROVINCE</p>
-                    <p>GAKENKE DISTRICT</p>
-                    <p>RULI SECTOR</p>
-                    <p>GIKINGO CELL</p>
-                </div>
-            </div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <nav id="navMenu">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="services.html">SERVICES</a></li>
+            <li><a href="our_work.html">OUR WORK</a></li>
+            <li><a href="publication.html">PUBLICATION</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="overlay">
+    <h1>ABOUT COMIKAGI</h1>
+
+    <h2>MINERALS MINED IN COMIKAGI</h2>
+    <p>Key mined and still mining minerals in COMIKAGI are Cassiterite and coltan.</p>
+
+    <h2>HISTORY OF MINING IN COMIKAGI</h2>
+    <p>Cooperative COMIKAGI is a mining cooperative with its headquarters in the Gakenke district, Ruli sector, Gikingo cell. It has been involved in mining for almost 35 years since 1989. Kababara perimeter is one of the six (6) mining licenses that COMIKAGI owns and is one where mining started. The president of Cooperative COMIKAGI is Kayitesi Beatrice (0783419757/comikagi2030@gmail.com). Mining activities have been conducted through underground operations.</p>
+
+    <h2>PRODUCTION STATUS</h2>
+    <p>COMIKAGI production is good ranging between 10,000kg to 20,000kg. The cassiterite is more dominant than coltan in pegmatite ore.</p>
+
+    <h2>ADDING VALUE TO MINED MINERALS</h2>
+    <p>Currently COMIKAGI uses Magnetic separator machines which use strong permanent magnets or electromagnets to remove ferrous contaminants from concentrate ores from the field based on magnetic properties. They are crucial for industries like mining because utilizing magnetic drums, rolls, or belts to separate materials, with capacities ranging from fine particles to large debris.</p>
+
+    <h2>FUTURE PROJECTION</h2>
+    <p>Future project of COMIKAGI is Smelting process which will be used to extract pure metals from their mineral ores. Unlike simple melting, which only changes a substance's state from solid to liquid, smelting uses intense heat and chemical reducing agents to break the bonds between the metal and other elements like oxygen or sulfur.</p>
+</div>
+
+<footer>
+    <div class="footer-section">
+        <h3>CONTACTS</h3>
+        <div class="contact-grid">
+            <p><strong>TIN:</strong></p>
+            <p>101773235</p>
+            <p><strong>TEL:</strong></p>
+            <p>+250783419757</p>
+            <p><strong>EMAIL:</strong></p>
+            <p><a href="mailto:comikagi2030@gmail.com">comikagi2030@gmail.com</a></p>
         </div>
-    </footer>
+    </div>
+    <div class="footer-section">
+        <h3>LOCATION</h3>
+        <div class="location-grid">
+            <p>NORTH PROVINCE</p>
+            <p>GAKENKE DISTRICT</p>
+            <p>RULI SECTOR</p>
+            <p>GIKINGO CELL</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+    const navLinks = document.querySelectorAll("nav ul li a");
+
+    menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        menuToggle.textContent = navMenu.classList.contains("active") ? "✕" : "☰";
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+            menuToggle.textContent = "☰";
+        });
+    });
+</script>
 
 </body>
 </html>
